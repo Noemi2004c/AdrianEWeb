@@ -12,9 +12,10 @@
       --muted-gray:#6b6b6b;
       --light-gray:#f8f8f8;
       --black:#111111;
-      --max-width:1100px;
+      --max-width:1200px;
       --radius:12px;
       --gap:1.25rem;
+      --header-height:92px; /* increased header height */
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
     *{box-sizing:border-box}
@@ -22,16 +23,21 @@
     html,body{height:100%;margin:0;background:var(--light-gray);color:var(--black)}
     a{color:inherit;text-decoration:none}
 
-    /* Header - brighter and more cheerful */
-    header{position:sticky;top:0;z-index:50;background:linear-gradient(90deg, rgba(212,160,23,0.06), rgba(255,255,255,0.02));backdrop-filter:blur(6px);border-bottom:1px solid rgba(0,0,0,0.04)}
+    /* Header - fixed, taller, and more visible */
+    header{position:fixed;top:0;left:0;right:0;z-index:60;background:linear-gradient(90deg, rgba(212,160,23,0.06), rgba(255,255,255,0.02));backdrop-filter:blur(6px);border-bottom:2px solid rgba(0,0,0,0.06);height:var(--header-height)}
+    header .container{max-width:var(--max-width);margin:0 auto;padding:0 1.2rem;height:100%;display:flex;align-items:center}
     .container{max-width:var(--max-width);margin:0 auto;padding:1rem}
-    nav{display:flex;align-items:center;gap:1rem;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:.75rem}
-    .brand img{height:64px;width:64px;border-radius:8px;object-fit:contain;background:var(--white);padding:6px;border:3px solid var(--mustard);box-shadow:0 6px 18px rgba(212,160,23,0.12)}
+    nav{display:flex;align-items:center;gap:1rem;justify-content:space-between;width:100%}
+    .brand{display:flex;align-items:center;gap:1rem}
+    /* larger, wider logo */
+    .brand img{height:76px;width:auto;border-radius:10px;object-fit:contain;background:var(--white);padding:8px;border:3px solid var(--mustard);box-shadow:0 8px 22px rgba(212,160,23,0.14)}
     .brand h1{font-size:1.05rem;margin:0;color:var(--black)}
-    .nav-links{display:flex;gap:0.5rem;align-items:center}
-    .nav-links a{padding:.5rem .85rem;border-radius:8px;color:var(--black);background:transparent;border:2px solid transparent;font-weight:600}
+    .nav-links{display:flex;gap:0.6rem;align-items:center}
+    .nav-links a{padding:.6rem 1rem;border-radius:10px;color:var(--black);background:transparent;border:2px solid transparent;font-weight:700}
     .nav-links a:hover{background:rgba(212,160,23,0.08);border-color:rgba(212,160,23,0.12)}
+
+    /* keep page content below the fixed header */
+    main{padding-top:calc(var(--header-height) + 8px)}
 
     /* Hero */
     .hero{position:relative;height:68vh;min-height:420px;display:grid;place-items:center;overflow:hidden;border-bottom:4px solid rgba(0,0,0,0.03)}
@@ -71,7 +77,8 @@
     label{display:block;font-size:.9rem;margin:.45rem 0 .2rem}
     input[type=text],input[type=email],textarea{width:100%;padding:.7rem;border-radius:8px;border:1px solid #eee}
 
-    footer{padding:1.5rem 0;background:#111;color:#fff}
+    /* taller footer */
+    footer{padding:2rem 0;background:#111;color:#fff}
     footer .container{display:flex;gap:1rem;align-items:center;justify-content:space-between}
 
     /* small screen */
@@ -80,6 +87,8 @@
       .brand h1{display:none}
       .hero h2{font-size:1.6rem}
       .slideshow{height:220px}
+      header .container{padding:0 0.75rem}
+      .brand img{height:64px}
     }
 
     /* subtle entrance animation */
@@ -121,10 +130,10 @@
   <main>
     <section id="home" class="hero">
       <video id="heroVideo" autoplay muted loop playsinline></video>
-      <div style="position:absolute;top:12px;left:12px;z-index:4;color:var(--black);font-weight:700;background:rgba(255,255,255,0.8);padding:.45rem .7rem;border-radius:8px">Residential & Commercial</div>
+      <div style="position:absolute;top:12px;left:12px;z-index:4;color:var(--black);font-weight:700;background:rgba(255,255,255,0.8);padding:.45rem .7rem;border-radius:8px">Residential &amp; Commercial</div>
       <div class="container overlay animate-up">
         <h2>AdrianE Concrete — Durable, Beautiful Concrete Work</h2>
-        <p>We provide professional concrete services for residential and commercial projects: driveways, sidewalks, slabs, stairs and stamped concrete. Skilled craftsmanship, timely delivery, and trustworthy pricing.</p>
+        <p>We provide professional concrete services for residential and commercial projects: driveways, sidewalks, slabs, stairs and stamped concrete. Skilled craftsmanship, timely delivery, and trusted service are our priorities.</p>
         <div class="cta">
           <button class="btn" onclick="scrollToSection('contact')">Get a Quote</button>
           <button class="btn secondary" onclick="document.getElementById('videoInput').click()">Upload / Replace Hero Video</button>
@@ -140,7 +149,7 @@
           <div>
             <div class="card">
               <h3>About Us</h3>
-              <p>AdrianE Concrete is a family-owned concrete contractor serving residential and commercial clients. We specialize in driveways, sidewalks, concrete slabs, concrete stairs, and stamped decorative concrete. Our goal is to deliver high-quality, long-lasting results with clear communication and fair pricing.</p>
+              <p>AdrianE Concrete is a family-owned concrete contractor serving residential and commercial clients. We specialize in driveways, sidewalks, concrete slabs, concrete stairs, and stamped concrete. Our team focuses on quality workmanship and clear communication.</p>
 
               <h4 style="margin-top:1rem">Services Slideshow</h4>
               <div class="slideshow-wrap">
@@ -166,7 +175,7 @@
                 <div class="service">Concrete Slabs</div>
                 <div class="service">Concrete Stairs</div>
                 <div class="service">Stamped Concrete</div>
-                <div class="service">Residential & Commercial</div>
+                <div class="service">Residential &amp; Commercial</div>
               </div>
             </div>
           </div>
@@ -174,7 +183,7 @@
           <aside>
             <div class="card">
               <h4>Quick Info</h4>
-              <p class="muted">Serving both residential and commercial customers. Licensed & insured. Free estimates available.</p>
+              <p class="muted">Serving both residential and commercial customers. Licensed &amp; insured. Free estimates available.</p>
               <hr />
               <p><strong>Call / Text:</strong> (add your phone number)</p>
               <p><strong>Email:</strong> <span class="muted">(add your email)</span></p>
@@ -241,7 +250,7 @@
     <div class="container">
       <div>
         <strong>AdrianE Concrete</strong>
-        <div class="muted">Quality concrete work — residential & commercial</div>
+        <div class="muted">Quality concrete work — residential &amp; commercial</div>
       </div>
       <div class="muted">© <span id="year"></span></div>
     </div>

@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AdrianE Concrete Services</title>
+  <meta name="description" content="Residential & Commercial concrete services: driveways, sidewalks, slabs, stairs, stamped concrete." />
+  <style>
+    :root{
+      --white:#ffffff;
+      --mustard:#D4A017; /* mustard yellow */
+      --muted-gray:#6b6b6b;
+      --light-gray:#f4f4f4;
+      --black:#111111;
+      --max-width:1100px;
+      --radius:10px;
+      --gap:1.25rem;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--light-gray);color:var(--black)}
+    a{color:inherit;text-decoration:none}
+    header{background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.15));position:sticky;top:0;z-index:50}
+    .container{max-width:var(--max-width);margin:0 auto;padding:1rem}
+    nav{display:flex;align-items:center;gap:1rem;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:.75rem}
+    .brand img{height:56px;width:auto;border-radius:6px;object-fit:cover;background:white;padding:4px}
+    .brand h1{font-size:1.1rem;margin:0;color:var(--white);text-shadow:0 1px 0 rgba(0,0,0,0.4)}
+    .nav-links{display:flex;gap:1rem;align-items:center}
+    .nav-links a{padding:.6rem .9rem;border-radius:8px;color:var(--white);background:transparent;border:2px solid transparent}
+    .nav-links a:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.08)}
+
+    /* Hero */
+    .hero{position:relative;height:72vh;min-height:420px;display:grid;place-items:center;overflow:hidden}
+    .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.6) saturate(0.95)}
+    .hero .overlay{position:relative;z-index:2;color:var(--white);text-align:center;padding:1rem;max-width:900px}
+    .hero h2{font-size:2.1rem;margin:.4rem 0}
+    .hero p{margin:0;font-size:1.05rem;opacity:.95}
+    .cta{margin-top:1rem;display:inline-flex;gap:.6rem}
+    .btn{background:var(--mustard);color:var(--black);padding:.7rem 1rem;border-radius:8px;font-weight:600;border:none;cursor:pointer}
+    .btn.secondary{background:transparent;border:2px solid var(--white);color:var(--white)}
+
+    /* sections */
+    section{padding:3rem 0}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:var(--gap)}
+    .card{background:var(--white);padding:1.25rem;border-radius:var(--radius);box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+
+    /* services list */
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+    .service{background:linear-gradient(180deg,rgba(0,0,0,0.03),transparent);padding:.9rem;border-radius:8px}
+
+    /* gallery */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.6rem}
+    .gallery-grid img{width:100%;height:110px;object-fit:cover;border-radius:8px}
+
+    /* contact */
+    label{display:block;font-size:.9rem;margin:.45rem 0 .2rem}
+    input[type=text],input[type=email],textarea{width:100%;padding:.7rem;border-radius:8px;border:1px solid #ddd}
+
+    footer{padding:1.5rem 0;background:linear-gradient(180deg,var(--black),#222);color:#eee}
+    footer .container{display:flex;gap:1rem;align-items:center;justify-content:space-between}
+
+    /* small screen */
+    @media (max-width:900px){
+      .grid{grid-template-columns:1fr}
+      .brand h1{display:none}
+      .hero h2{font-size:1.6rem}
+    }
+
+    /* subtle entrance animation */
+    .animate-up{transform:translateY(12px);opacity:0;animation:up .7s ease forwards}
+    @keyframes up{to{transform:none;opacity:1}}
+
+    .logo-uploader{display:flex;align-items:center;gap:.5rem}
+    .file-input{display:none}
+    .muted{color:var(--muted-gray);font-size:.95rem}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <img id="siteLogo" src="" alt="Your logo" onerror="this.style.display='none'" />
+          <div>
+            <h1>AdrianE Concrete</h1>
+            <div class="logo-uploader muted">
+              <label style="cursor:pointer;" title="Upload logo">
+                <input id="logoInput" class="file-input" type="file" accept="image/*" />
+                Upload logo
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <video id="heroVideo" autoplay muted loop playsinline></video>
+      <div style="position:absolute;top:12px;left:12px;z-index:4;color:var(--white);font-weight:600;background:rgba(0,0,0,0.35);padding:.45rem .7rem;border-radius:8px">Residential & Commercial</div>
+      <div class="container overlay animate-up">
+        <h2>AdrianE Concrete — Durable, Beautiful Concrete Work</h2>
+        <p>We provide professional concrete services for residential and commercial projects: driveways, sidewalks, slabs, stairs and stamped concrete. Skilled craftsmanship, timely delivery, and trustworthy pricing.</p>
+        <div class="cta">
+          <button class="btn" onclick="scrollToSection('contact')">Get a Quote</button>
+          <button class="btn secondary" onclick="document.getElementById('videoInput').click()">Upload / Replace Hero Video</button>
+        </div>
+        <div style="margin-top:1rem;color:var(--white);opacity:.95;font-size:.95rem">Tip: Upload a short background video (landscape mp4). It will play muted and loop here while visitors browse.</div>
+        <input id="videoInput" class="file-input" type="file" accept="video/*" />
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="grid">
+          <div>
+            <div class="card">
+              <h3>About Us</h3>
+              <p>AdrianE Concrete is a family-owned concrete contractor serving residential and commercial clients. We specialize in driveways, sidewalks, concrete slabs, concrete stairs, and stamped decorative concrete. Our goal is to deliver high-quality, long-lasting results with clear communication and fair pricing.</p>
+              <h4 style="margin-top:1rem">What we do</h4>
+              <div class="services">
+                <div class="service">Driveways</div>
+                <div class="service">Sidewalks</div>
+                <div class="service">Concrete Slabs</div>
+                <div class="service">Concrete Stairs</div>
+                <div class="service">Stamped Concrete</div>
+                <div class="service">Residential & Commercial</div>
+              </div>
+            </div>
+          </div>
+
+          <aside>
+            <div class="card">
+              <h4>Quick Info</h4>
+              <p class="muted">Serving both residential and commercial customers. Licensed & insured. Free estimates available.</p>
+              <hr />
+              <p><strong>Call / Text:</strong> (add your phone number)</p>
+              <p><strong>Email:</strong> <span class="muted">(add your email)</span></p>
+              <p style="margin-top:.6rem"><strong>Hours:</strong> Mon - Sat, 7am - 6pm</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem">
+          <h3>Gallery</h3>
+          <div class="muted">Upload photos of past projects to showcase your work.</div>
+        </div>
+        <div class="card">
+          <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem">
+            <label style="cursor:pointer;" class="btn" for="galleryInput">Add Photos</label>
+            <input id="galleryInput" class="file-input" type="file" accept="image/*" multiple />
+            <button class="btn secondary" onclick="clearGallery()">Clear Gallery</button>
+          </div>
+          <div id="galleryGrid" class="gallery-grid" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="grid">
+          <div>
+            <div class="card">
+              <h3>Contact</h3>
+              <form id="contactForm">
+                <label for="name">Name</label>
+                <input id="name" type="text" required />
+                <label for="email">Email</label>
+                <input id="email" type="email" required />
+                <label for="message">Message</label>
+                <textarea id="message" rows="6" required></textarea>
+                <div style="margin-top:.8rem;display:flex;gap:.6rem;align-items:center">
+                  <button class="btn" type="submit">Send Message</button>
+                  <div class="muted">(Form opens your email client)</div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <aside>
+            <div class="card">
+              <h4>Visit / Office</h4>
+              <p class="muted">Add your address here. Customers are welcome by appointment.</p>
+              <div style="height:14px"></div>
+              <h4>Social</h4>
+              <p class="muted">Add links to Facebook / Instagram to show more projects.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>
+        <strong>AdrianE Concrete</strong>
+        <div class="muted">Quality concrete work — residential & commercial</div>
+      </div>
+      <div class="muted">© <span id="year"></span></div>
+    </div>
+  </footer>
+
+  <script>
+    // basic helpers
+    function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+
+    // Logo upload and persistence (saved to localStorage)
+    const logoInput = document.getElementById('logoInput');
+    const siteLogo = document.getElementById('siteLogo');
+    logoInput.addEventListener('change',e=>{
+      const f = e.target.files[0];
+      if(!f) return;
+      const reader = new FileReader();
+      reader.onload = ()=>{
+        siteLogo.src = reader.result;
+        siteLogo.style.display = 'block';
+        try{localStorage.setItem('adrian_logo', reader.result)}catch(err){console.warn('Could not save logo to localStorage',err)}
+      };
+      reader.readAsDataURL(f);
+    });
+    // load saved logo
+    try{const savedLogo = localStorage.getItem('adrian_logo'); if(savedLogo){siteLogo.src = savedLogo; siteLogo.style.display='block'}}catch(e){}
+
+    // Hero video upload (not saved to localStorage to avoid huge storage)
+    const videoInput = document.getElementById('videoInput');
+    const heroVideo = document.getElementById('heroVideo');
+    videoInput.addEventListener('change', e=>{
+      const f = e.target.files[0];
+      if(!f) return;
+      const url = URL.createObjectURL(f);
+      heroVideo.src = url;
+      heroVideo.play().catch(()=>{});
+    });
+
+    // Gallery handling (images saved to localStorage as data URLs - beware of size limits)
+    const galleryInput = document.getElementById('galleryInput');
+    const galleryGrid = document.getElementById('galleryGrid');
+    galleryInput.addEventListener('change', async e=>{
+      const files = Array.from(e.target.files || []);
+      for(const f of files){
+        if(!f.type.startsWith('image/')) continue;
+        const data = await readFileAsDataURL(f);
+        addGalleryImage(data);
+      }
+      saveGallery();
+    });
+
+    function readFileAsDataURL(file){
+      return new Promise((res,rej)=>{
+        const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=()=>rej(); r.readAsDataURL(file);
+      });
+    }
+
+    function addGalleryImage(dataUrl){
+      const img = document.createElement('img');
+      img.src = dataUrl;
+      img.loading = 'lazy';
+      img.alt = 'Project photo';
+      img.addEventListener('click',()=>{openLightbox(dataUrl)});
+      galleryGrid.prepend(img);
+    }
+
+    function saveGallery(){
+      const imgs = Array.from(galleryGrid.querySelectorAll('img')).map(i=>i.src).slice(0,40); // cap to first 40
+      try{localStorage.setItem('adrian_gallery', JSON.stringify(imgs))}catch(e){console.warn('Gallery save failed',e)}
+    }
+
+    function loadGallery(){
+      try{
+        const raw = localStorage.getItem('adrian_gallery');
+        if(!raw) return;
+        const arr = JSON.parse(raw);
+        arr.forEach(src=>addGalleryImage(src));
+      }catch(e){console.warn('Could not load gallery',e)}
+    }
+
+    function clearGallery(){
+      if(!confirm('Remove all gallery images from this browser?')) return;
+      galleryGrid.innerHTML='';
+      try{localStorage.removeItem('adrian_gallery')}catch(e){}
+    }
+
+    function openLightbox(src){
+      const modal = document.createElement('div');
+      modal.style.position='fixed';modal.style.inset=0;modal.style.background='rgba(0,0,0,0.85)';modal.style.display='grid';modal.style.placeItems='center';modal.style.zIndex=9999;
+      const img = document.createElement('img');img.src=src;img.style.maxWidth='95%';img.style.maxHeight='95%';img.style.borderRadius='8px';
+      modal.appendChild(img);
+      modal.addEventListener('click',()=>document.body.removeChild(modal));
+      document.body.appendChild(modal);
+    }
+
+    // Load saved gallery on start
+    loadGallery();
+
+    // Contact form -> mailto
+    document.getElementById('contactForm').addEventListener('submit',e=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const subject = encodeURIComponent('Request from AdrianE website - ' + (name||''));
+      const body = encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\nMessage:\n'+message);
+      const mailto = `mailto:youremail@example.com?subject=${subject}&body=${body}`;
+      window.location.href = mailto;
+    });
+
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // friendly fallback hero: if no video source, show a subtle CSS background
+    document.addEventListener('DOMContentLoaded', ()=>{
+      // if video has no source, set a neutral animated background
+      if(!heroVideo.getAttribute('src')){
+        heroVideo.innerHTML = '';
+        heroVideo.style.background = 'linear-gradient(135deg, rgba(212,160,23,0.12), rgba(0,0,0,0.06))';
+      }
+    });
+
+  </script>
+</body>
+</html>

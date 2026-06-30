@@ -10,35 +10,40 @@
       --white:#ffffff;
       --mustard:#D4A017; /* mustard yellow */
       --muted-gray:#6b6b6b;
-      --light-gray:#f4f4f4;
+      --light-gray:#f8f8f8;
       --black:#111111;
       --max-width:1100px;
-      --radius:10px;
+      --radius:12px;
       --gap:1.25rem;
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth} /* smooth sliding for anchor navigation */
     html,body{height:100%;margin:0;background:var(--light-gray);color:var(--black)}
     a{color:inherit;text-decoration:none}
-    header{background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.15));position:sticky;top:0;z-index:50}
+
+    /* Header - brighter and more cheerful */
+    header{position:sticky;top:0;z-index:50;background:linear-gradient(90deg, rgba(212,160,23,0.06), rgba(255,255,255,0.02));backdrop-filter:blur(6px);border-bottom:1px solid rgba(0,0,0,0.04)}
     .container{max-width:var(--max-width);margin:0 auto;padding:1rem}
     nav{display:flex;align-items:center;gap:1rem;justify-content:space-between}
     .brand{display:flex;align-items:center;gap:.75rem}
-    .brand img{height:56px;width:auto;border-radius:6px;object-fit:cover;background:white;padding:4px}
-    .brand h1{font-size:1.1rem;margin:0;color:var(--white);text-shadow:0 1px 0 rgba(0,0,0,0.4)}
-    .nav-links{display:flex;gap:1rem;align-items:center}
-    .nav-links a{padding:.6rem .9rem;border-radius:8px;color:var(--white);background:transparent;border:2px solid transparent}
-    .nav-links a:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.08)}
+    .brand img{height:64px;width:64px;border-radius:8px;object-fit:contain;background:var(--white);padding:6px;border:3px solid var(--mustard);box-shadow:0 6px 18px rgba(212,160,23,0.12)}
+    .brand h1{font-size:1.05rem;margin:0;color:var(--black)}
+    .nav-links{display:flex;gap:0.5rem;align-items:center}
+    .nav-links a{padding:.5rem .85rem;border-radius:8px;color:var(--black);background:transparent;border:2px solid transparent;font-weight:600}
+    .nav-links a:hover{background:rgba(212,160,23,0.08);border-color:rgba(212,160,23,0.12)}
 
     /* Hero */
-    .hero{position:relative;height:72vh;min-height:420px;display:grid;place-items:center;overflow:hidden}
-    .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.6) saturate(0.95)}
-    .hero .overlay{position:relative;z-index:2;color:var(--white);text-align:center;padding:1rem;max-width:900px}
-    .hero h2{font-size:2.1rem;margin:.4rem 0}
+    .hero{position:relative;height:68vh;min-height:420px;display:grid;place-items:center;overflow:hidden;border-bottom:4px solid rgba(0,0,0,0.03)}
+    .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.9) saturate(1.02)}
+    /* warm subtle overlay to make it feel sunny but not dim */
+    .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg, rgba(212,160,23,0.06), rgba(255,255,255,0.03));pointer-events:none}
+    .hero .overlay{position:relative;z-index:2;color:var(--black);text-align:center;padding:1rem;max-width:900px}
+    .hero h2{font-size:2.1rem;margin:.4rem 0;color:var(--black)}
     .hero p{margin:0;font-size:1.05rem;opacity:.95}
     .cta{margin-top:1rem;display:inline-flex;gap:.6rem}
-    .btn{background:var(--mustard);color:var(--black);padding:.7rem 1rem;border-radius:8px;font-weight:600;border:none;cursor:pointer}
-    .btn.secondary{background:transparent;border:2px solid var(--white);color:var(--white)}
+    .btn{background:var(--mustard);color:var(--black);padding:.7rem 1rem;border-radius:8px;font-weight:700;border:none;cursor:pointer}
+    .btn.secondary{background:transparent;border:2px solid rgba(0,0,0,0.06);color:var(--black)}
 
     /* sections */
     section{padding:3rem 0}
@@ -47,7 +52,16 @@
 
     /* services list */
     .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
-    .service{background:linear-gradient(180deg,rgba(0,0,0,0.03),transparent);padding:.9rem;border-radius:8px}
+    .service{background:linear-gradient(180deg,rgba(212,160,23,0.04),transparent);padding:.9rem;border-radius:8px;font-weight:600;color:var(--black)}
+
+    /* slideshow */
+    .slideshow-wrap{display:flex;flex-direction:column;align-items:center;gap:.8rem}
+    .slideshow{width:100%;max-width:720px;height:360px;background:linear-gradient(180deg, #fff, #fafafa);border-radius:12px;overflow:hidden;position:relative;display:grid;place-items:center}
+    .slides{display:flex;height:100%;transition:transform .6s cubic-bezier(.22,.9,.31,1)}
+    .slide{min-width:100%;height:100%;flex:0 0 100%;display:grid;place-items:center}
+    .slide img{width:100%;height:100%;object-fit:cover}
+    .slide-controls{position:absolute;left:12px;right:12px;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;gap:12px}
+    .slide-controls button{background:rgba(255,255,255,0.9);border-radius:8px;padding:.5rem .6rem;border:none;cursor:pointer;font-weight:700}
 
     /* gallery */
     .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.6rem}
@@ -55,9 +69,9 @@
 
     /* contact */
     label{display:block;font-size:.9rem;margin:.45rem 0 .2rem}
-    input[type=text],input[type=email],textarea{width:100%;padding:.7rem;border-radius:8px;border:1px solid #ddd}
+    input[type=text],input[type=email],textarea{width:100%;padding:.7rem;border-radius:8px;border:1px solid #eee}
 
-    footer{padding:1.5rem 0;background:linear-gradient(180deg,var(--black),#222);color:#eee}
+    footer{padding:1.5rem 0;background:#111;color:#fff}
     footer .container{display:flex;gap:1rem;align-items:center;justify-content:space-between}
 
     /* small screen */
@@ -65,6 +79,7 @@
       .grid{grid-template-columns:1fr}
       .brand h1{display:none}
       .hero h2{font-size:1.6rem}
+      .slideshow{height:220px}
     }
 
     /* subtle entrance animation */
@@ -74,7 +89,6 @@
     .logo-uploader{display:flex;align-items:center;gap:.5rem}
     .file-input{display:none}
     .muted{color:var(--muted-gray);font-size:.95rem}
-
   </style>
 </head>
 <body>
@@ -82,6 +96,7 @@
     <div class="container">
       <nav>
         <div class="brand">
+          <!-- Placeholder logo; to commit a permanent logo to the repo, upload it and set src to /images/logo.png -->
           <img id="siteLogo" src="" alt="Your logo" onerror="this.style.display='none'" />
           <div>
             <h1>AdrianE Concrete</h1>
@@ -94,10 +109,10 @@
           </div>
         </div>
         <div class="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#contact">Contact</a>
+          <a href="#home" data-target="home">Home</a>
+          <a href="#about" data-target="about">About</a>
+          <a href="#gallery" data-target="gallery">Gallery</a>
+          <a href="#contact" data-target="contact">Contact</a>
         </div>
       </nav>
     </div>
@@ -106,7 +121,7 @@
   <main>
     <section id="home" class="hero">
       <video id="heroVideo" autoplay muted loop playsinline></video>
-      <div style="position:absolute;top:12px;left:12px;z-index:4;color:var(--white);font-weight:600;background:rgba(0,0,0,0.35);padding:.45rem .7rem;border-radius:8px">Residential & Commercial</div>
+      <div style="position:absolute;top:12px;left:12px;z-index:4;color:var(--black);font-weight:700;background:rgba(255,255,255,0.8);padding:.45rem .7rem;border-radius:8px">Residential & Commercial</div>
       <div class="container overlay animate-up">
         <h2>AdrianE Concrete — Durable, Beautiful Concrete Work</h2>
         <p>We provide professional concrete services for residential and commercial projects: driveways, sidewalks, slabs, stairs and stamped concrete. Skilled craftsmanship, timely delivery, and trustworthy pricing.</p>
@@ -114,7 +129,7 @@
           <button class="btn" onclick="scrollToSection('contact')">Get a Quote</button>
           <button class="btn secondary" onclick="document.getElementById('videoInput').click()">Upload / Replace Hero Video</button>
         </div>
-        <div style="margin-top:1rem;color:var(--white);opacity:.95;font-size:.95rem">Tip: Upload a short background video (landscape mp4). It will play muted and loop here while visitors browse.</div>
+        <div style="margin-top:1rem;color:var(--muted-gray);font-size:.95rem">Tip: Upload a short background video (landscape mp4). It will play muted and loop here while visitors browse.</div>
         <input id="videoInput" class="file-input" type="file" accept="video/*" />
       </div>
     </section>
@@ -126,6 +141,24 @@
             <div class="card">
               <h3>About Us</h3>
               <p>AdrianE Concrete is a family-owned concrete contractor serving residential and commercial clients. We specialize in driveways, sidewalks, concrete slabs, concrete stairs, and stamped decorative concrete. Our goal is to deliver high-quality, long-lasting results with clear communication and fair pricing.</p>
+
+              <h4 style="margin-top:1rem">Services Slideshow</h4>
+              <div class="slideshow-wrap">
+                <div class="slideshow" id="slideshow">
+                  <div class="slides" id="slides"></div>
+                  <div class="slide-controls">
+                    <button id="prevSlide">◀</button>
+                    <button id="nextSlide">▶</button>
+                  </div>
+                </div>
+                <div style="display:flex;gap:.6rem;align-items:center">
+                  <label style="cursor:pointer;" class="btn" for="slidesInput">Add Slides</label>
+                  <input id="slidesInput" class="file-input" type="file" accept="image/*" multiple />
+                  <button class="btn secondary" onclick="clearSlides()">Clear Slides</button>
+                </div>
+                <div class="muted">Slides auto-advance every 4s. Click a slide to open a larger preview.</div>
+              </div>
+
               <h4 style="margin-top:1rem">What we do</h4>
               <div class="services">
                 <div class="service">Driveways</div>
@@ -216,7 +249,22 @@
 
   <script>
     // basic helpers
-    function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    // intercept header anchor clicks and use smooth slide behavior
+    document.querySelectorAll('a[data-target]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        const t = this.getAttribute('data-target');
+        scrollToSection(t);
+        // update URL hash without jump
+        history.replaceState(null,'', '#'+t);
+      });
+    });
 
     // Logo upload and persistence (saved to localStorage)
     const logoInput = document.getElementById('logoInput');
@@ -323,12 +371,80 @@
 
     // friendly fallback hero: if no video source, show a subtle CSS background
     document.addEventListener('DOMContentLoaded', ()=>{
-      // if video has no source, set a neutral animated background
       if(!heroVideo.getAttribute('src')){
         heroVideo.innerHTML = '';
-        heroVideo.style.background = 'linear-gradient(135deg, rgba(212,160,23,0.12), rgba(0,0,0,0.06))';
+        heroVideo.style.background = 'linear-gradient(135deg, rgba(212,160,23,0.06), rgba(255,255,255,0.03))';
       }
     });
+
+    /* -------- Slideshow logic for Services -------- */
+    const slidesContainer = document.getElementById('slides');
+    const slidesInput = document.getElementById('slidesInput');
+    let slides = []; // dataURLs
+    let currentIndex = 0;
+    let slideTimer = null;
+
+    slidesInput.addEventListener('change', async e=>{
+      const files = Array.from(e.target.files||[]);
+      for(const f of files){
+        if(!f.type.startsWith('image/')) continue;
+        const data = await readFileAsDataURL(f);
+        slides.push(data);
+      }
+      persistSlides();
+      renderSlides();
+    });
+
+    function persistSlides(){
+      try{localStorage.setItem('adrian_slides', JSON.stringify(slides.slice(0,40)))}catch(e){console.warn('Could not save slides',e)}
+    }
+
+    function loadSlides(){
+      try{const raw = localStorage.getItem('adrian_slides'); if(!raw) return; slides = JSON.parse(raw);}catch(e){console.warn('Could not load slides',e)}
+    }
+
+    function renderSlides(){
+      slidesContainer.innerHTML = '';
+      slides.forEach(src=>{
+        const s = document.createElement('div'); s.className='slide';
+        const img = document.createElement('img'); img.src = src; img.alt='Slide'; img.addEventListener('click', ()=> openLightbox(src));
+        s.appendChild(img);
+        slidesContainer.appendChild(s);
+      });
+      updateSlidePosition();
+    }
+
+    function updateSlidePosition(){
+      const width = slidesContainer.clientWidth || (document.getElementById('slideshow').clientWidth);
+      const wrapper = slidesContainer.parentElement; // .slides
+      // ensure currentIndex in range
+      if(slides.length===0){
+        slidesContainer.style.transform = 'translateX(0)';
+        return;
+      }
+      if(currentIndex >= slides.length) currentIndex = 0;
+      if(currentIndex < 0) currentIndex = slides.length-1;
+      const offset = -currentIndex * 100;
+      slidesContainer.style.transform = `translateX(${offset}%)`;
+    }
+
+    function nextSlide(){ currentIndex++; updateSlidePosition(); }
+    function prevSlide(){ currentIndex--; updateSlidePosition(); }
+
+    document.getElementById('nextSlide').addEventListener('click', ()=>{ nextSlide(); resetAutoplay(); });
+    document.getElementById('prevSlide').addEventListener('click', ()=>{ prevSlide(); resetAutoplay(); });
+
+    function autoplayStart(){
+      stopAutoplay();
+      slideTimer = setInterval(()=>{ currentIndex = (currentIndex+1) % Math.max(slides.length,1); updateSlidePosition(); }, 4000);
+    }
+    function stopAutoplay(){ if(slideTimer) clearInterval(slideTimer); slideTimer=null; }
+    function resetAutoplay(){ stopAutoplay(); autoplayStart(); }
+
+    function clearSlides(){ if(!confirm('Remove all slideshow images from this browser?')) return; slides = []; persistSlides(); renderSlides(); }
+
+    // initialize slides
+    loadSlides(); renderSlides(); autoplayStart();
 
   </script>
 </body>
